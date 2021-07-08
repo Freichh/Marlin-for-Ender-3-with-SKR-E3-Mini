@@ -190,11 +190,7 @@ namespace ExtUI {
     void setHostResponse(const uint8_t);
   #endif
 
-  inline void simulateUserClick() {
-    #if EITHER(HAS_LCD_MENU, EXTENSIBLE_UI)
-      ui.lcd_clicked = true;
-    #endif
-  }
+  inline void simulateUserClick() { ui.lcd_clicked = true; }
 
   #if ENABLED(PRINTCOUNTER)
     char* getFailedPrints_str(char buffer[21]);

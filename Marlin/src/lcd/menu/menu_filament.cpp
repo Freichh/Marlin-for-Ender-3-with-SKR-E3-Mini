@@ -204,8 +204,16 @@ void _menu_temp_filament_op(const PauseMode mode, const int8_t extruder) {
     #endif
 
     END_MENU();
-  }
-#endif
+
+  #else
+
+    if (thermalManager.targetHotEnoughToExtrude(active_extruder))
+      queue.inject_P(PSTR("M600B0"));
+    else
+      ui.goto_screen([]{ _menu_temp_filament_op(PAUSE_MODE_CHANGE_FILAMENT, 0); });
+
+  #endif
+}
 
 static uint8_t hotend_status_extruder = 0;
 
